@@ -13,9 +13,10 @@ namespace Enterprises
             System.Globalization.CultureInfo ruRU = new("ru-RU");
             DateTime.ParseExact(str, "d", ruRU);
         }
-        public Product(int amount, string shelfLife)
+        public Product(string name, int amount, string shelfLife)
         {
             isDate(shelfLife);
+            Name = name;
             Amount = amount;
             ShelfLife = shelfLife;
         }
