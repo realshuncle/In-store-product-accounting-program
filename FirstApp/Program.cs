@@ -1,4 +1,5 @@
 ﻿using System;
+using Enterprises;
 
 namespace FirstApp
 {
@@ -6,6 +7,7 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
+            Shop a;
             Console.WriteLine("Hello World!");
         }
     }

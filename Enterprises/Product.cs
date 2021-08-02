@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Enterprises
 {
-    class Product
+    public class Product
     {
         private void isDate(string str)
         {

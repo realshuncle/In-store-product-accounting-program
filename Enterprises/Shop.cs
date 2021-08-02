@@ -14,7 +14,7 @@ namespace Enterprises
 
         }
     }
-    class Shop : IEnterprise
+    public class Shop : IEnterprise
     {
         public Shop(EnterpriseHandler added, EnterpriseHandler removed, EnterpriseHandler showed, EnterpriseHandler groe)
         {
