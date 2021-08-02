@@ -16,14 +16,17 @@ namespace Enterprises
     }
     class Shop : IEnterprise
     {
-        public Shop(EnterpriseHandler added, EnterpriseHandler Removed, EnterpriseHandler Showed, EnterpriseHandler GROE)
+        public Shop(EnterpriseHandler added, EnterpriseHandler removed, EnterpriseHandler showed, EnterpriseHandler groe)
         {
             Added += added;
+            Removed += removed;
+            Showed += showed;
+            GROE += groe;
         }
 
-        private List<Product> Products;
+        private readonly List<Product> Products;
 
-        event EnterpriseHandler IEnterpri;
+        //event EnterpriseHandler IEnterpri;
 
         protected internal event EnterpriseHandler Added;
 
@@ -37,58 +40,62 @@ namespace Enterprises
 
         public void AddProduct(Product product)
         {
-            EnterpriseEventsArgs e = new EnterpriseEventsArgs($"Added product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife}.", product);
+            IEnterprise temp = this;
+            EnterpriseEventsArgs e = new ($"Added product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife}.", product);
             int index = Products.FindIndex(prod => prod.Name == product.Name && prod.ShelfLife == product.ShelfLife);
             if (index != -1)
                 Products[index].Amount += product.Amount;
             else
                 Products.Add(product);
-            CallEvent(e, Added);
+            temp.CallEvent(e, Added);
         }
         public void RemoveProduct(Product product)
         {
+            IEnterprise temp = this;
             int index = Products.FindIndex(prod => prod.Name == product.Name && prod.ShelfLife == product.ShelfLife);
+            EnterpriseEventsArgs e;
             if (index != -1)
             {
-                EnterpriseEventsArgs e = new EnterpriseEventsArgs($"Removed product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife}.", product);
+                e = new ($"Removed product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife}.", product);
                 Products.RemoveAt(index);
                 //CallEvent(e, Removed);
             }
             else
             {
-                EnterpriseEventsArgs e = new EnterpriseEventsArgs($"Product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife} was not found.", product);
+                e = new ($"Product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife} was not found.", product);
                 //CallEvent(e, Removed);
                 //throw new EnterpriseException("This product was not found.");
             }
-            CallEvent(e, Removed);
+            temp.CallEvent(e, Removed);
         }
         public void GetRidOfExpired()
         {
             foreach (Product i in Products)
             {
-                DateTime parsedDate;
-                CultureInfo ruRU = new CultureInfo("ru-RU");
-                if (DateTime.Today.CompareTo(DateTime.TryParseExact(i.ShelfLife, "d", ruRU, DateTimeStyles.None, out parsedDate)) < 0)
+                CultureInfo ruRU = new("ru-RU");
+                if (DateTime.Today.CompareTo(DateTime.TryParseExact(i.ShelfLife, "d", ruRU, DateTimeStyles.None, out DateTime parsedDate)) < 0)
                 {
-                    EnterpriseEventsArgs e = new EnterpriseEventsArgs($"Removed product {i.Name}, amount: {i.Amount}, implementation period: {i.ShelfLife}.", i);
+                    IEnterprise temp = this;
+                    EnterpriseEventsArgs e = new ($"Removed product {i.Name}, amount: {i.Amount}, implementation period: {i.ShelfLife}.", i);
                     Products.Remove(i);
-                    CallEvent(e, GROE);
+                    temp.CallEvent(e, GROE);
                 }        
             }    
         }
-        private void CallEvent(EnterpriseEventsArgs e, EnterpriseHandler handler)
+        void IEnterprise.CallEvent(EnterpriseEventsArgs e, EnterpriseHandler handler)
         {
             if (e != null)
                 handler?.Invoke(this, e);
         }
         public void Show(string str)
         {
+            IEnterprise temp = this;
             foreach (Product i in Products)
             {
                 if (i.Name.Contains(str) || i.ShelfLife.Contains(str))
                 {
-                    EnterpriseEventsArgs e = new EnterpriseEventsArgs($"Removed product {i.Name}, amount: {i.Amount}, implementation period: {i.ShelfLife}.", i);
-                    CallEvent(e, GROE);
+                    EnterpriseEventsArgs e = new ($"Removed product {i.Name}, amount: {i.Amount}, implementation period: {i.ShelfLife}.", i);
+                    temp.CallEvent(e, GROE);
                 }
             }
         }

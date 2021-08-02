@@ -15,9 +15,7 @@ namespace Enterprises
         //protected internal event EnterpriseHandler GROE;
 
         public event EnterpriseHandler Notify;
-        private void CallEvent(EnterpriseEventsArgs e, EnterpriseHandler handler)
-        {
-        }        
+        protected internal void CallEvent(EnterpriseEventsArgs e, EnterpriseHandler handler);      
         void AddProduct(Product product);
         void RemoveProduct(Product prosuct);
         void GetRidOfExpired();
