@@ -22,6 +22,7 @@ namespace Enterprises
             Removed += removed;
             Showed += showed;
             GROE += groe;
+            Products = new();
         }
 
         private readonly List<Product> Products;
