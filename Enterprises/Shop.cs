@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Enterprises
 {
-    class EnterpriseException : Exception
+    public class EnterpriseException : Exception
     {
         public EnterpriseException(string message) : base(message)
         {
