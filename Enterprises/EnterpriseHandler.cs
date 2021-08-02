@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Enterprises
 {
-    delegate void EnterpriseHandler(object sender, EnterpriseEventsArgs e);
-    class EnterpriseEventsArgs
+    public delegate void EnterpriseHandler(object sender, EnterpriseEventsArgs e);
+    public class EnterpriseEventsArgs
     {
         public string Message { get; private set; }
         public Product Product { get; private set; }
