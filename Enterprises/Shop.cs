@@ -80,10 +80,11 @@ namespace Enterprises
         }
         public void GetRidOfExpired()
         {
-            foreach (Product i in Products)
+            foreach (Product i in Products.ToList())
             {
                 CultureInfo ruRU = new("ru-RU");
-                if (DateTime.Today.CompareTo(DateTime.TryParseExact(i.ShelfLife, "d", ruRU, DateTimeStyles.None, out DateTime parsedDate)) < 0)
+                DateTime.TryParseExact(i.ShelfLife, "d", ruRU, DateTimeStyles.None, out DateTime parsedDate);
+                if (DateTime.Today.CompareTo(parsedDate) > 0)
                 {
                     IEnterprise temp = this;
                     EnterpriseEventsArgs e = new ($"Removed product {i.Name}, amount: {i.Amount}, implementation period: {i.ShelfLife}.", i);
@@ -105,7 +106,7 @@ namespace Enterprises
                 if (i.Name.Contains(str) || i.ShelfLife.Contains(str))
                 {
                     EnterpriseEventsArgs e = new ($"Product {i.Name}, amount: {i.Amount}, implementation period: {i.ShelfLife}.", i);
-                    temp.CallEvent(e, Show);
+                    temp.CallEvent(e, Showed);
                 }
             }
         }
