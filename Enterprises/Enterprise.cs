@@ -8,13 +8,6 @@ namespace Enterprises
 {
     interface IEnterprise
     {
-        //protected internal event EnterpriseHandler Added;
-
-        //protected internal event EnterpriseHandler Removed;
-
-        //protected internal event EnterpriseHandler GROE;
-
-        public event EnterpriseHandler Notify;
         protected internal void CallEvent(EnterpriseEventsArgs e, EnterpriseHandler handler);      
         void AddProduct(Product product);
         void RemoveProduct(Product prosuct);

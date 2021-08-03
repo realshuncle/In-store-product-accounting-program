@@ -8,14 +8,14 @@ namespace Enterprises
 {
     public class Product
     {
-        private void isDate(string str)
+        private static void IsDate(string str)
         {
             System.Globalization.CultureInfo ruRU = new("ru-RU");
             DateTime.ParseExact(str, "d", ruRU);
         }
         public Product(string name, int amount, string shelfLife)
         {
-            isDate(shelfLife);
+            IsDate(shelfLife);
             Name = name;
             Amount = amount;
             ShelfLife = shelfLife;

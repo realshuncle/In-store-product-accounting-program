@@ -27,8 +27,6 @@ namespace Enterprises
 
         private readonly List<Product> Products;
 
-        //event EnterpriseHandler IEnterpri;
-
         protected internal event EnterpriseHandler Added;
 
         protected internal event EnterpriseHandler Removed;
@@ -36,8 +34,6 @@ namespace Enterprises
         protected internal event EnterpriseHandler Showed;
 
         protected internal event EnterpriseHandler GROE;
-
-        public event EnterpriseHandler Notify;
 
         public void AddProduct(Product product)
         {
@@ -56,7 +52,6 @@ namespace Enterprises
             int index = Products.FindIndex(prod => prod.Name == product.Name && prod.ShelfLife == product.ShelfLife);
             EnterpriseEventsArgs e;
             if (index != -1)
-            {
                 if (product.Amount >= Products[index].Amount)
                 {
                     e = new($"Removed product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife}.", product);
@@ -67,15 +62,8 @@ namespace Enterprises
                     e = new($"Removed product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife}. Remaining: {Products[index].Amount -= product.Amount}.", product);
                     Products[index].Amount -= product.Amount;
                 }
-            
-                //CallEvent(e, Removed);
-            }
             else
-            {
                 e = new ($"Product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife} was not found.", product);
-                //CallEvent(e, Removed);
-                //throw new EnterpriseException("This product was not found.");
-            }
             temp.CallEvent(e, Removed);
         }
         public void GetRidOfExpired()
@@ -102,13 +90,11 @@ namespace Enterprises
         {
             IEnterprise temp = this;
             foreach (Product i in Products)
-            {
                 if (i.Name.Contains(str) || i.ShelfLife.Contains(str))
                 {
                     EnterpriseEventsArgs e = new ($"Product {i.Name}, amount: {i.Amount}, implementation period: {i.ShelfLife}.", i);
                     temp.CallEvent(e, Showed);
                 }
-            }
         }
     }
 }

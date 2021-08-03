@@ -7,26 +7,26 @@ namespace FirstApp
     {
         static void Added(object sender, EnterpriseEventsArgs e)
         {
-            Console.ForegroundColor = ConsoleColor.Green; // устанавливаем цвет
-            Console.WriteLine($"{sender.ToString()}: {e.Message}");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{sender}: {e.Message}");
             Console.ResetColor();
         }
         static void Removed(object sender, EnterpriseEventsArgs e)
         {
-            Console.ForegroundColor = ConsoleColor.DarkGreen; // устанавливаем цвет
-            Console.WriteLine($"{sender.ToString()}: {e.Message}");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine($"{sender}: {e.Message}");
             Console.ResetColor();
         }
         static void Showed(object sender, EnterpriseEventsArgs e)
         {
-            Console.ForegroundColor = ConsoleColor.Cyan; // устанавливаем цвет
-            Console.WriteLine($"{sender.ToString()}: {e.Message}");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"{sender}: {e.Message}");
             Console.ResetColor();
         }
         static void Groeed(object sender, EnterpriseEventsArgs e)
         {
-            Console.ForegroundColor = ConsoleColor.DarkGreen; // устанавливаем цвет
-            Console.WriteLine($"{sender.ToString()}: {e.Message}");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine($"{sender}: {e.Message}");
             Console.ResetColor();
         }
         static void GROE(Shop shop)
