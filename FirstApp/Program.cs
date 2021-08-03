@@ -13,7 +13,7 @@ namespace FirstApp
         }
         static void Removed(object sender, EnterpriseEventsArgs e)
         {
-            Console.ForegroundColor = ConsoleColor.Red; // устанавливаем цвет
+            Console.ForegroundColor = ConsoleColor.DarkGreen; // устанавливаем цвет
             Console.WriteLine($"{sender.ToString()}: {e.Message}");
             Console.ResetColor();
         }
@@ -25,7 +25,7 @@ namespace FirstApp
         }
         static void Groeed(object sender, EnterpriseEventsArgs e)
         {
-            Console.ForegroundColor = ConsoleColor.DarkRed; // устанавливаем цвет
+            Console.ForegroundColor = ConsoleColor.DarkGreen; // устанавливаем цвет
             Console.WriteLine($"{sender.ToString()}: {e.Message}");
             Console.ResetColor();
         }
@@ -93,14 +93,50 @@ namespace FirstApp
         }
         static void Main(string[] args)
         {
-            Shop a = new (Added, Removed, Showed, Removed);
-            Console.WriteLine("Hello World!");
-            Add(a);
-            Add(a);
-            Show(a);
-            GROE(a);
-            Show(a);
-            Remove(a);
+            Shop a = new (Added, Removed, Showed, Groeed);
+            Console.WriteLine("Program \"Shop\".");
+            bool flag = true;
+            while(flag)
+            {
+                Console.WriteLine("Enter the command. Enter help for a list of commands.");
+                string command;
+                command = Console.ReadLine();
+                switch (command)
+                {
+                    case "add":
+                    case "1": 
+                        Add(a);
+                        break;
+                    case "remove":
+                    case "2":
+                        Remove(a);
+                        break;
+                    case "show":
+                    case "3":
+                        string sear;
+                        Console.WriteLine("Enter a search word or leave the line blank and press enter.");
+                        sear = Console.ReadLine();
+                        Show(a, sear);
+                        break;
+                    case "groe":
+                    case "4":
+                        GROE(a);
+                        break;
+                    case "help":
+                    case "5":
+                        Console.WriteLine("1 or add - to add product, 2 or remove - to remove product, " +
+                            "3 or show - to show products, 4 or groe - to get rid of expired, 5 or help - to fet list of command," +
+                            "6 or quit - to quit from program");
+                        break;
+                    case "quit":
+                    case "6":
+                        flag = false;
+                        break;
+                    default:
+                        Console.WriteLine("Unknown command");
+                        break;
+                }
+            }
         }
     }
 }
