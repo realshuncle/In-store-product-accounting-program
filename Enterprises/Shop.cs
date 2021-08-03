@@ -57,8 +57,17 @@ namespace Enterprises
             EnterpriseEventsArgs e;
             if (index != -1)
             {
-                e = new ($"Removed product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife}.", product);
-                Products.RemoveAt(index);
+                if (product.Amount >= Products[index].Amount)
+                {
+                    e = new($"Removed product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife}.", product);
+                    Products.RemoveAt(index);
+                }
+                else
+                {
+                    e = new($"Removed product {product.Name}, amount: {product.Amount}, implementation period: {product.ShelfLife}. Remaining: {Products[index].Amount -= product.Amount}.", product);
+                    Products[index].Amount -= product.Amount;
+                }
+            
                 //CallEvent(e, Removed);
             }
             else
