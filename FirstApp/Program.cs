@@ -23,9 +23,15 @@ namespace FirstApp
             Console.WriteLine($"{sender.ToString()}: {e.Message}");
             Console.ResetColor();
         }
-        static void GROE(object sender, EnterpriseEventsArgs e)
+        static void Groeed(object sender, EnterpriseEventsArgs e)
         {
-            Console.WriteLine(e.Message);
+            Console.ForegroundColor = ConsoleColor.DarkRed; // устанавливаем цвет
+            Console.WriteLine($"{sender.ToString()}: {e.Message}");
+            Console.ResetColor();
+        }
+        static void GROE(Shop shop)
+        {
+            shop.GetRidOfExpired();
         }
         static void Show(Shop shop, string str = "")
         {
@@ -91,7 +97,9 @@ namespace FirstApp
             Console.WriteLine("Hello World!");
             Add(a);
             Add(a);
-            Show(a, "9");
+            Show(a);
+            GROE(a);
+            Show(a);
             Remove(a);
         }
     }
