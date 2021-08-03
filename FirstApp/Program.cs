@@ -17,13 +17,19 @@ namespace FirstApp
             Console.WriteLine($"{sender.ToString()}: {e.Message}");
             Console.ResetColor();
         }
+        static void Showed(object sender, EnterpriseEventsArgs e)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan; // устанавливаем цвет
+            Console.WriteLine($"{sender.ToString()}: {e.Message}");
+            Console.ResetColor();
+        }
         static void GROE(object sender, EnterpriseEventsArgs e)
         {
             Console.WriteLine(e.Message);
         }
-        static void Show(object sender, EnterpriseEventsArgs e)
+        static void Show(Shop shop, string str = "")
         {
-            Console.WriteLine(e.Message);
+            shop.Show(str);
         }
         static void Add(Shop shop)
         {
@@ -81,9 +87,11 @@ namespace FirstApp
         }
         static void Main(string[] args)
         {
-            Shop a = new Shop(Added, Removed, Added, Added);
+            Shop a = new (Added, Removed, Showed, Removed);
             Console.WriteLine("Hello World!");
             Add(a);
+            Add(a);
+            Show(a, "9");
             Remove(a);
         }
     }
