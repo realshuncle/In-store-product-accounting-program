@@ -104,8 +104,8 @@ namespace Enterprises
             {
                 if (i.Name.Contains(str) || i.ShelfLife.Contains(str))
                 {
-                    EnterpriseEventsArgs e = new ($"Removed product {i.Name}, amount: {i.Amount}, implementation period: {i.ShelfLife}.", i);
-                    temp.CallEvent(e, GROE);
+                    EnterpriseEventsArgs e = new ($"Product {i.Name}, amount: {i.Amount}, implementation period: {i.ShelfLife}.", i);
+                    temp.CallEvent(e, Show);
                 }
             }
         }
