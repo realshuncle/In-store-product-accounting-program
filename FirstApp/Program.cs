@@ -56,12 +56,16 @@ namespace FirstApp
                 }
                 catch (EnterpriseException e)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(e.Message);
+                    Console.ResetColor();
                 }
             }
             catch (FormatException e)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
+                Console.ResetColor();
             }  
         }
         static void Remove(Shop shop)
@@ -83,12 +87,16 @@ namespace FirstApp
                 }
                 catch (EnterpriseException e)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(e.Message);
+                    Console.ResetColor();
                 }
             }
             catch (FormatException e)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
+                Console.ResetColor();
             }
         }
         static void Main(string[] args)
@@ -124,9 +132,14 @@ namespace FirstApp
                         break;
                     case "help":
                     case "5":
-                        Console.WriteLine("1 or add - to add product, 2 or remove - to remove product, " +
-                            "3 or show - to show products, 4 or groe - to get rid of expired, 5 or help - to fet list of command," +
-                            "6 or quit - to quit from program");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("1 or add - to add product");
+                        Console.WriteLine("2 or remove - to remove product");
+                        Console.WriteLine("3 or show - to show products");
+                        Console.WriteLine("4 or groe - to get rid of expired");
+                        Console.WriteLine("5 or help - to fet list of command");
+                        Console.WriteLine("6 or quit - to quit from program");
+                        Console.ResetColor();
                         break;
                     case "quit":
                     case "6":
