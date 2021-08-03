@@ -7,11 +7,15 @@ namespace FirstApp
     {
         static void Added(object sender, EnterpriseEventsArgs e)
         {
+            Console.ForegroundColor = ConsoleColor.Green; // устанавливаем цвет
             Console.WriteLine($"{sender.ToString()}: {e.Message}");
+            Console.ResetColor();
         }
         static void Removed(object sender, EnterpriseEventsArgs e)
         {
-            Console.WriteLine(e.Message);
+            Console.ForegroundColor = ConsoleColor.Red; // устанавливаем цвет
+            Console.WriteLine($"{sender.ToString()}: {e.Message}");
+            Console.ResetColor();
         }
         static void GROE(object sender, EnterpriseEventsArgs e)
         {
@@ -46,13 +50,11 @@ namespace FirstApp
             catch (FormatException e)
             {
                 Console.WriteLine(e.Message);
-            }
-            
-            
+            }  
         }
         static void Main(string[] args)
         {
-            Shop a = new Shop(Added, Added, Added, Added);
+            Shop a = new Shop(Added, Removed, Added, Added);
             Console.WriteLine("Hello World!");
             Add(a);
         }
