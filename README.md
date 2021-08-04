@@ -1,6 +1,7 @@
 # In-store product accounting program
 
-## Why is this project needed?
+This project is educational. It has simple functionality. Released adding, removing products, displaying saved products and getting rid of expired products.
+
 I have mastered the basics of C# syntax such as:
 * Date types
 * Logical operations
